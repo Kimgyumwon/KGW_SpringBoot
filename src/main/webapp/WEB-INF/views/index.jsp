@@ -5,22 +5,14 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>공지사항 시스템</title>
-
-<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-<link
-    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-    rel="stylesheet">
-    
-<link href="/css/sb-admin-2.min.css" rel="stylesheet">
-  
-  
+  <title>메인 페이지</title>
+<c:import url="/WEB-INF/views/template/head.jsp"/>
 </head>
 <body id="page-top">
 
 	<div id="wrapper">
 		<!-- side bar -->
-		<c:import url="/WEB-INF/views/template/sidebar.jsp"></c:import>
+		<c:import url="/WEB-INF/views/template/sidebar.jsp"/>
 		<!-- side bar -->
 		
 		<!-- Content Wrapper -->
@@ -29,14 +21,14 @@
             <div id="content">
        			
        			<!-- topbar -->
-       			<c:import url="/WEB-INF/views/template/topbar.jsp"></c:import>
+       			<c:import url="/WEB-INF/views/template/topbar.jsp"/>
             	<!-- topbar -->
             	
             	<!-- Begin Page Content -->
                 <div class="container-fluid">
                 	<!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Index</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -66,28 +58,10 @@
 	
 	</div>
 	
-	<a href="#page-top"></a>
 
-	<div class="modal fade"></div>
+	<c:import url="/WEB-INF/views/template/foot.jsp"/>
 	
 	
-	
-	    <!-- Bootstrap core JavaScript-->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="/js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="/vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="/js/demo/chart-area-demo.js"></script>
-    <script src="/js/demo/chart-pie-demo.js"></script>
 	
 	
 	

@@ -10,8 +10,9 @@
     	</select>
     	
     	<!-- 목록 -->
-    	<select id="list" resultType="NoticeDTO" parameterType="NoticeDTO">
-    		SELECT * FROM notice
+    	<select id="list" resultType="NoticeDTO" parameterType="Pager">
+    		SELECT * FROM notice ORDER BY board_num DESC
+    		LIMIT #{startNum},#{perPage}
     	</select>
     	
     	<!-- 추가 -->
@@ -32,4 +33,11 @@
     		DELETE FROM notice
     		WHERE board_num = #{boardNum}
     	</delete>
+    	
+    	<select id="count" resultType="Long">
+			SELECT COUNT(*) FROM notice    	
+    	</select>
+    	
+    	
+    	
     </mapper>

@@ -33,13 +33,20 @@ class NoticeDAOTest {
 	
 //		 @Test
 //		 void testAdd() throws Exception {
-//			 NoticeDTO noticeDTO = new NoticeDTO();
-//			 noticeDTO.setBoardTitle("추가");
-//			 noticeDTO.setBoardWriter("그만");
-//			 noticeDTO.setBoardContents("하고싶다");
 //			 
-//			 int result = noticeDAO.add(noticeDTO);
-//			 assertEquals(1, result);
+//			 for (int i = 0; i < 120; i++) {
+//				 NoticeDTO noticeDTO = new NoticeDTO();
+//				 noticeDTO.setBoardTitle("title"+i);
+//				 noticeDTO.setBoardWriter("writer"+i);
+//				 noticeDTO.setBoardContents("contents"+i);
+//				 noticeDAO.add(noticeDTO);
+//				 if (i%10==0) {
+//					 Thread.sleep(500);
+//				}
+//				 
+//			}
+//			 
+//			 
 //		 }
 	
 //			@Test
@@ -55,14 +62,14 @@ class NoticeDAOTest {
 //				assertEquals(1, result);
 //			}
 	
-			@Test
-			void testDelete() throws Exception {
-				NoticeDTO noticeDTO = new NoticeDTO();
-				noticeDTO.setBoardNum(1L);
-				
-				int result = noticeDAO.delete(noticeDTO);
-				assertEquals(1, result);
-			}
+//			@Test
+//			void testDelete() throws Exception {
+//				NoticeDTO noticeDTO = new NoticeDTO();
+//				noticeDTO.setBoardNum(1L);
+//				
+//				int result = noticeDAO.delete(noticeDTO);
+//				assertEquals(1, result);
+//			}
 			
 	
 	

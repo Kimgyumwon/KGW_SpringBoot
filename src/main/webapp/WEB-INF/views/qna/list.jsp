@@ -28,18 +28,59 @@
                 <div class="container-fluid">
                 	<!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">QnA</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
                     
                     <!-- Content Row -->
-                    <div class="row">
+                  <div class="row justify-content-center">
                     
-                    <!-- 생성한 contents 작성 -->
-                    
-                    </div>
-                
+                    <table class="table table-striped col-sm-8 mt-5">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">Title</th>
+					      <th scope="col">Writer</th>
+					      <th scope="col">Date</th>
+					      <th scope="col">Hit</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  	<c:forEach items="${list}" var="qna">
+					    <tr>
+					      <th scope="row">${qna.boardNum}</th>
+					      <td>${qna.boardTitle}</td>
+					      <td>${qna.boardWriter}</td>
+					      <td>${qna.boardDate}</td>
+					      <td>${qna.boardHit}</td>
+					    </tr>
+					    </c:forEach>
+					  </tbody>
+					</table>
+				</div>
+				
+				<div class="row justify-content-center">
+					<nav aria-label="Page navigation example">
+					  <ul class="pagination">
+					    <li class="page-item">
+					      <a class="page-link" href="./list?page=${pager.begin-1 }" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					      </a>
+					    </li>
+					    <c:forEach begin="${pager.begin }" end="${pager.end }" var="i">
+						    <li class="page-item"><a class="page-link" href="./list?page=${i}">${i}</a></li>
+					    </c:forEach>
+					    
+					    <li class="page-item">
+					      <a class="page-link" href="./list?page=${pager.end + 1}" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					      </a>
+					    </li>
+					  </ul>
+					</nav>
+				</div>
+				
                 </div>
                 <!-- /.container-fluid -->
             </div> 

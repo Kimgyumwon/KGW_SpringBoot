@@ -26,10 +26,15 @@ public class NoticeService implements BoardService {
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.detail(boardDTO);
 	}
+	
+	
+	
 	@Override
 	public int update(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.update(boardDTO);
 	}
+	
+	
 	@Override
 	public int add(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.add(boardDTO);

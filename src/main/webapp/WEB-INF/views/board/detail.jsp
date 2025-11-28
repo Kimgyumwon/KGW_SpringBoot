@@ -83,7 +83,7 @@
                 <div class="container-fluid">
                 	<!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Detail 페이지</h1>
+                        <h1 class="h3 mb-0 text-gray-800">${category} Detail</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -97,33 +97,36 @@
 						    </div>
 						
 						    <div class="detail-row">
-						        <span class="label">글번호:</span> ${notice.boardNum}
+						        <span class="label">글번호:</span> ${board.boardNum}
 						    </div>
 						
 						    <div class="detail-row">
-						        <span class="label">작성자:</span> ${notice.boardWriter}
+						        <span class="label">작성자:</span> ${board.boardWriter}
 						    </div>
 						
 						    <div class="detail-row">
-						        <span class="label">작성일:</span> ${notice.boardDate}
+						        <span class="label">작성일:</span> ${board.boardDate}
 						    </div>
 						
 						    <div class="detail-row">
-						        <span class="label">조회수:</span> ${notice.boardHit}
+						        <span class="label">조회수:</span> ${board.boardHit}
 						    </div>
 						
 						    <div class="detail-row">
 						        <span class="label">내용:</span>
 						        <div class="content-box">
-						            ${notice.boardContents}
+						            ${board.boardContents}
 						        </div>
+						        <c:if test="${category ne 'Notice'}">
+						        	<a href="./reply?boardNum=${board.boardNum}" class="btn btn-danger">답글달기</a>
+						        </c:if>
 						    </div>
 						
 						    <div class="btn-box">
-						        <a href="/notice/list" class="btn btn btn-outline-success">목록으로</a>
+						        <a href="./list" class="btn btn btn-outline-success">목록으로</a>
 						        
 						        <form action="./delete" method="post" id="frm">
-						        	<input type="hidden" name="boardNum" value="${notice.boardNum}">
+						        	<input type="hidden" name="boardNum" value="${board.boardNum}">
 						        </form>
 						        <button class="btn btn-outline-danger" id="upBtn">수정</button>
 						        <button class="btn btn-outline-dark" id="delBtn">삭제</button>

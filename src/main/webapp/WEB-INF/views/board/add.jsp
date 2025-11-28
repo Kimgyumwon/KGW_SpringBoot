@@ -88,7 +88,7 @@
                 <div class="container-fluid">
                 	<!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">글쓰기</h1>
+                        <h1 class="h3 mb-0 text-gray-800">${category}  ${kind}</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -97,17 +97,21 @@
                     <div class="row">
                     
 	                    <form method="post" class="notice-form">
+	                      <input type="hidden" name="boardNum" value="${board.boardNum}">
 						  <label for="board_title">제목</label>
-						  <input type="text" id="board_title" name="boardTitle" placeholder="제목을 입력하세요" required />
+						  <input type="text" id="board_title" name="boardTitle" placeholder="제목을 입력하세요" value="${board.boardTitle}" required />
 						
 						  <label for="board_writer">작성자</label>
-						  <input type="text" id="board_writer" name="boardWriter" placeholder="작성자 이름" required />
+						  <input type="text" 
+						  		 id="board_writer" 
+						  		 name="boardWriter"
+						  		 placeholder="작성자 이름" 
+						  		 value="${board.boardWriter}" required />
 						
 						  <label for="board_contents">내용</label>
-						  <textarea id="board_contents" name="boardContents" placeholder="공지 내용을 입력하세요" rows="8" required></textarea>
+						  <textarea id="board_contents" name="boardContents" placeholder="공지 내용을 입력하세요" rows="8" required>${board.boardContents}</textarea>
 						
-						
-						  <button type="submit">등록하기</button>
+						  <button type="submit">${kind}</button>
 						</form>
 
                     </div>

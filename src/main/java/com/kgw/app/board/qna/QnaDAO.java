@@ -15,5 +15,7 @@ public interface QnaDAO extends BoardDAO {
 	// ref값을 기본키랑 똑같이 맞춰주는 메서드
 	public int refUpdate(BoardDTO boardDTO) throws Exception;
 	
+	public int stepUpdate(QnaDTO qnaDTO) throws Exception;
 	
+	public int insertQna(QnaDTO qnaDTO) throws Exception; 
 }

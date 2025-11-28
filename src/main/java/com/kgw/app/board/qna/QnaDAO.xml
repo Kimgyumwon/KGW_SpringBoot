@@ -40,8 +40,6 @@
 			WHERE board_num=#{boardNum}
 		</update>
 		
-		
-		
 		<select id="count" resultType="Long" parameterType="Pager">
 			SELECT COUNT(*) FROM qna
 			<include refid="search"/>

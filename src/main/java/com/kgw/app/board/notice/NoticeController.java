@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kgw.app.board.BoardDTO;
 import com.kgw.app.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +27,7 @@ public class NoticeController {
 
 	@GetMapping("list")
 	public void list(Pager pager, Model model) throws Exception {
-		List<NoticeDTO> list = noticeService.list(pager);
+		List<BoardDTO> list = noticeService.list(pager);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
@@ -48,15 +49,15 @@ public class NoticeController {
 	}
 	
 	@GetMapping("detail")
-	public String detail(NoticeDTO noticeDTO, Model model) throws Exception {
-		noticeDTO = noticeService.detail(noticeDTO);
+	public String detail(BoardDTO boardDTO, Model model) throws Exception {
+		boardDTO = noticeService.detail(boardDTO);
 		String msg = "조회된 글이 없습니다 ㅠㅠ;;";
-		if (noticeDTO == null) {
+		if (boardDTO == null) {
 			model.addAttribute("msg", msg);
 			model.addAttribute("url", "/notice/list");
 			return "commons/result";
 		}
-		model.addAttribute("notice", noticeDTO);
+		model.addAttribute("notice", boardDTO);
 		return "notice/detail";
 	}
 	

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kgw.app.board.BoardDTO;
 import com.kgw.app.util.Pager;
 
 @Controller
@@ -21,7 +22,7 @@ public class QnaController {
 	
 	@GetMapping("list")
 	public void list(Model model, Pager pager) throws Exception {
-		List<QnaDTO> list =  qnaService.list(pager);
+		List<BoardDTO> list =  qnaService.list(pager);
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 	}
@@ -36,9 +37,6 @@ public class QnaController {
 	@PostMapping("add")
 	public String add(QnaDTO qnaDTO) throws Exception {
 		int result = qnaService.add(qnaDTO);
-		
-		
-		
 		return "redirect:/qna/list";
 	}
 	

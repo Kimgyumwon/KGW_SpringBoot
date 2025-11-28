@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kgw.app.util.Pager;
@@ -26,16 +27,19 @@ public class QnaController {
 	}
 	
 	
-	public void add() throws Exception {
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setBoardTitle("방어");
-		qnaDTO.setBoardContents("웨이팅");
-		qnaDTO.setBoardWriter("길다");
-		qnaDTO.setBoardRef(0L);
-		qnaDTO.setBoardStep(0L);
-		qnaDTO.setBoardDepth(0L);
+	
+	@GetMapping("add")
+	public void add() throws Exception {}
+	
+	
+	
+	@PostMapping("add")
+	public String add(QnaDTO qnaDTO) throws Exception {
+		int result = qnaService.add(qnaDTO);
 		
-		qnaService.add(qnaDTO);
+		
+		
+		return "redirect:/qna/list";
 	}
 	
 	

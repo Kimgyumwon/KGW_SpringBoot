@@ -26,6 +26,6 @@ public interface NoticeDAO {
 	public int add(NoticeDTO noticeDTO) throws Exception;
 	
 	//리스트 개수
-	public Long count() throws Exception;
+	public Long count(Pager pager) throws Exception;
 	
 }

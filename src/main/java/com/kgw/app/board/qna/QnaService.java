@@ -16,14 +16,15 @@ public class QnaService {
 	
 	public List<QnaDTO> list(Pager pager) throws Exception {
 		
-		Long totalCount = qnaDAO.count();
+		Long totalCount = qnaDAO.count(pager);
 		pager.pageing(totalCount);
 		
 		return qnaDAO.list(pager);
 	}
 	
 	public int add(QnaDTO qnaDTO) throws Exception {
-		return qnaDAO.add(qnaDTO);
+		qnaDAO.add(qnaDTO);
+		return qnaDAO.refUpdate(qnaDTO); 
 	}
 	
 }

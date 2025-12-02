@@ -1,12 +1,19 @@
 package com.kgw.app.board.qna;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kgw.app.board.BoardDTO;
+import com.kgw.app.board.BoardFileDTO;
 import com.kgw.app.board.BoardService;
+import com.kgw.app.files.FileManager;
 import com.kgw.app.util.Pager;
 
 @Service
@@ -14,6 +21,12 @@ public class QnaService implements BoardService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	@Autowired
+	private FileManager fileManager;
+	
+	@Value("${app.upload.qna}")
+	private String path;
 	
 	@Override
 	public BoardDTO detail(BoardDTO boardDTO) throws Exception {
@@ -31,9 +44,36 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int add(BoardDTO boardDTO) throws Exception {
-		qnaDAO.add(boardDTO);
-		return qnaDAO.refUpdate(boardDTO);
+	public int add(BoardDTO boardDTO, MultipartFile[] attach) throws Exception {
+		// 글번호 필요
+		int result = qnaDAO.add(boardDTO);
+		
+		if (attach == null) {
+			return result;
+		}
+		
+		File file = new File(path);
+
+		
+		for (MultipartFile f : attach) {
+			
+			if (f == null || f.isEmpty() || f.getSize() == 0) {
+				continue;
+			}
+			
+			String fileName = fileManager.fileSave(file, f);
+			
+			
+			
+			BoardFileDTO boardFileDTO = new QnaFileDTO();
+			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setFileOrigin(f.getOriginalFilename());
+			qnaDAO.fileAdd(boardFileDTO);
+		}
+		
+		
+		return result;
 	}
 
 	@Override

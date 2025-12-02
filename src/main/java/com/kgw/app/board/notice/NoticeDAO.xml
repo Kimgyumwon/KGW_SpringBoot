@@ -33,7 +33,7 @@
     	</select>
     	
     	<!-- 추가 -->
-    	<insert id="add" parameterType="NoticeDTO">
+    	<insert id="add" parameterType="NoticeDTO" useGeneratedKeys="true" keyProperty="boardNum">
     		INSERT INTO notice 
     		(board_title, board_writer, board_contents, board_date)
     		VALUES
@@ -58,6 +58,12 @@
 			<include refid="search"/>
     	</select>
     	
+    	<!-- fileAdd -->
+    	
+    	<insert id="fileAdd" parameterType="NoticeFileDTO">
+    		INSERT INTO notice_files (file_name, file_origin, board_num)
+    		VALUES (#{fileName}, #{fileOrigin}, #{boardNum})
+    	</insert>
     	
     	
     </mapper>

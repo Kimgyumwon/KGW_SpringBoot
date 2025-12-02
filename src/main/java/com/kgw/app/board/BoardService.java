@@ -2,6 +2,8 @@ package com.kgw.app.board;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.kgw.app.util.Pager;
 
 public interface BoardService {
@@ -19,5 +21,5 @@ public interface BoardService {
 	public int delete(BoardDTO boardDTO) throws Exception;
 	
 	//추가
-	public int add(BoardDTO boardDTO) throws Exception;
+	public int add(BoardDTO boardDTO , MultipartFile[] attach) throws Exception;
 }

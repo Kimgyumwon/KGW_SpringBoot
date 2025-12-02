@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.kgw.app.board.BoardDTO;
 import com.kgw.app.util.Pager;
@@ -53,8 +54,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add")
-	public String add(NoticeDTO noticeDTO, Model model) throws Exception {
-		int result = noticeService.add(noticeDTO);
+	public String add(NoticeDTO noticeDTO, MultipartFile[] attach , Model model) throws Exception {
+		int result = noticeService.add(noticeDTO , attach);
 		String msg = "실패했습니다 ㅠㅠ";
 		if (result == 0) {
 			model.addAttribute("msg", msg);

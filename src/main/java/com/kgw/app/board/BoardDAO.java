@@ -23,4 +23,6 @@ public interface BoardDAO {
 	//리스트 개수
 	public Long count(Pager pager) throws Exception;
 	
+	//파일 추가
+	public int fileAdd(BoardFileDTO boardFileDTO) throws Exception; 
 }

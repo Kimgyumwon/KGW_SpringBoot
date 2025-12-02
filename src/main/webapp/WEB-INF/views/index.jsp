@@ -59,12 +59,6 @@
 	</div>
 	
 
-	<c:import url="/WEB-INF/views/template/foot.jsp"/>
-	
-	
-	
-	
-	
-	
+	<c:import url="/WEB-INF/views/template/foot.jsp"/>	
 </body>
 </html>

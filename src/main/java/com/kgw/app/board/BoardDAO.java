@@ -25,4 +25,9 @@ public interface BoardDAO {
 	
 	//파일 추가
 	public int fileAdd(BoardFileDTO boardFileDTO) throws Exception; 
+	
+	// 부모글 지우기전에 첨부파일 삭제
+	public int deleteFile(BoardDTO boardDTO) throws Exception;
+	
+	
 }

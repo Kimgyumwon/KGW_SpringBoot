@@ -117,7 +117,16 @@
 						        <div class="content-box">
 						            ${board.boardContents}
 						        </div>
-						        <c:if test="${category ne 'Notice'}">
+						        
+						        <div>
+						        	<c:forEach items="${board.boardFileList}" var="file">
+						        		<div>
+						        			<a href="/files/${category}/${file.fileName}">${file.fileOrigin}</a>
+						        		</div>
+						        	</c:forEach>
+						        </div>
+						        
+						        <c:if test="${category ne 'notice'}">
 						        	<a href="./reply?boardNum=${board.boardNum}" class="btn btn-danger">답글달기</a>
 						        </c:if>
 						    </div>

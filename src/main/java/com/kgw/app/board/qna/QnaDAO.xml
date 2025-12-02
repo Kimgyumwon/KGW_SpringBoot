@@ -37,9 +37,28 @@
 		
 		
 		<!-- 조회 -->
-    	<select id="detail" resultType="QnaDTO" parameterType="QnaDTO">
-    		SELECT * FROM qna WHERE board_num=#{boardNum}
+    	<select id="detail" resultMap="qnaFileList" parameterType="QnaDTO">
+    		select * 
+			from qna q
+				left join qna_files qf
+				on q.board_num = qf.board_num
+			where q.board_num = #{boardNum}
     	</select>
+		
+		<resultMap type="QnaDTO" id="qnaFileList">
+			<id column="board_num" property="boardNum"/>
+			<result column="board_title" property="boardTitle"/>
+			<result column="board_writer" property="boardWriter"/>
+			<result column="board_contents" property="boardContents"/>
+			<result column="board_date" property="boardDate"/>
+			
+			<collection property="boardFileList" javaType="java.util.List" ofType="BoardFileDTO">
+				<id column="file_num" property="fileNum"/>
+				<result column="file_name" property="fileName"/>
+				<result column="file_origin" property="fileOrigin"/>
+			</collection>
+		</resultMap>
+		
 		
 		
 		<select id="list" resultType="QnaDTO" parameterType="Pager">

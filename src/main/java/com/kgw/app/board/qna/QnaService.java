@@ -73,7 +73,7 @@ public class QnaService implements BoardService {
 		}
 		
 		
-		return result;
+		return qnaDAO.refUpdate(boardDTO);
 	}
 
 	@Override

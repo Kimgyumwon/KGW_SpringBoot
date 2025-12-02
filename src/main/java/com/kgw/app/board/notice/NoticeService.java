@@ -66,7 +66,7 @@ public class NoticeService implements BoardService {
 			String fileName = fileManager.fileSave(file, f);
 			
 			//4. 정보를 DB에 저장
-			BoardFileDTO boardFileDTO = new NoticeFileDTO();
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
 			boardFileDTO.setFileName(fileName);
 			boardFileDTO.setFileOrigin(f.getOriginalFilename());
 			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
@@ -78,6 +78,16 @@ public class NoticeService implements BoardService {
 	
 	@Override
 	public int delete(BoardDTO boardDTO) throws Exception {
+		boardDTO = noticeDAO.detail(boardDTO);
+		// HDD에서 파일을 삭제 하는 코드
+		if (boardDTO.getBoardFileList() != null) {
+			for (BoardFileDTO boardFileDTO : boardDTO.getBoardFileList()) {
+				File file = new File(uploadPath, boardFileDTO.getFileName());
+				boolean flag = fileManager.fileDelete(file);
+			}
+		}
+		//----------------------
+		noticeDAO.deleteFile(boardDTO);
 		return noticeDAO.delete(boardDTO);
 	}
 	

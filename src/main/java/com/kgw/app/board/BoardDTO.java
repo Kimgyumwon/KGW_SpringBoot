@@ -1,6 +1,9 @@
 package com.kgw.app.board;
 
 import java.time.LocalDate;
+import java.util.List;
+
+import com.kgw.app.board.notice.NoticeFileDTO;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,5 +21,9 @@ public class BoardDTO {
 	private String boardContents;
 	private LocalDate boardDate;
 	private Long boardHit;
+	
+	
+	private List<BoardFileDTO> boardFileList;
+
 	
 }

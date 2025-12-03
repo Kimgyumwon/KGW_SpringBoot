@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kgw.app.board.BoardDTO;
+import com.kgw.app.board.BoardFileDTO;
 import com.kgw.app.util.Pager;
 
 import lombok.extern.slf4j.Slf4j;
@@ -105,8 +106,14 @@ public class NoticeController {
 		return "redirect:./list";
 	}
 	
-	
-	
+	@GetMapping("fileDown")
+	public String fileDown(BoardFileDTO boardFileDTO, Model model) throws Exception {
+		boardFileDTO = noticeService.fileDetail(boardFileDTO);
+		model.addAttribute("file", boardFileDTO);
+		
+		
+		return "fileDownView";
+	}
 	
 	
 	

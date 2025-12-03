@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.kgw.app.board.BoardDTO;
+import com.kgw.app.board.BoardFileDTO;
 import com.kgw.app.board.notice.NoticeDTO;
 import com.kgw.app.util.Pager;
 
@@ -54,7 +55,11 @@ public class QnaController {
 	}
 	
 	@GetMapping("add")
-	public String add() throws Exception {return "board/add";}
+	public String add(Model model) throws Exception {
+		model.addAttribute("kind", "ADD");
+
+		return "board/add";
+	}
 	
 	
 	@PostMapping("add")
@@ -112,24 +117,9 @@ public class QnaController {
 		return "redirect:./list";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@GetMapping("fileDown")
+	public void fileDown(BoardFileDTO boardFileDTO) throws Exception {
+		boardFileDTO = qnaService.fileDetail(boardFileDTO);
+	}
 	
 }

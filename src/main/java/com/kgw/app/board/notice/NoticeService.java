@@ -91,4 +91,11 @@ public class NoticeService implements BoardService {
 		return noticeDAO.delete(boardDTO);
 	}
 	
+	@Override
+	public BoardFileDTO fileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		
+		return noticeDAO.fileDetail(boardFileDTO);
+	}
+	
+	
 }

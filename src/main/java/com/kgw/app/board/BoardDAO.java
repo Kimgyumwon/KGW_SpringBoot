@@ -29,5 +29,6 @@ public interface BoardDAO {
 	// 부모글 지우기전에 첨부파일 삭제
 	public int deleteFile(BoardDTO boardDTO) throws Exception;
 	
+	public BoardFileDTO fileDetail(BoardFileDTO boardFileDTO) throws Exception;
 	
 }

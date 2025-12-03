@@ -22,4 +22,9 @@ public interface BoardService {
 	
 	//추가
 	public int add(BoardDTO boardDTO , MultipartFile[] attach) throws Exception;
+	
+	public BoardFileDTO fileDetail(BoardFileDTO boardFileDTO) throws Exception;
+
+	
+	
 }

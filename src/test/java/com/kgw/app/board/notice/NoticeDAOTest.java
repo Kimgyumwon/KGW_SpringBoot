@@ -7,8 +7,11 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
+@Transactional
 class NoticeDAOTest {
 
 	@Autowired
@@ -32,6 +35,7 @@ class NoticeDAOTest {
 //		}
 	
 //		 @Test
+//		 @Rollback(false)
 //		 void testAdd() throws Exception {
 //			 
 //			 for (int i = 0; i < 120; i++) {
@@ -43,10 +47,7 @@ class NoticeDAOTest {
 //				 if (i%10==0) {
 //					 Thread.sleep(500);
 //				}
-//				 
 //			}
-//			 
-//			 
 //		 }
 	
 //			@Test

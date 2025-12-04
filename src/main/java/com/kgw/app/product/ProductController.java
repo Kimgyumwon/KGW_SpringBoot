@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kgw.app.util.Pager;
+
 @Controller
 @RequestMapping("/product/*")
 public class ProductController {
@@ -18,9 +20,10 @@ public class ProductController {
 	
 	//리스트 보기
 	@GetMapping("list")
-	public void list(Model model) throws Exception {
-		List<ProductDTO> product =  productService.list();
+	public void list(Model model, Pager pager) throws Exception {
+		List<ProductDTO> product =  productService.list(pager);
 		model.addAttribute("dto", product);
+		model.addAttribute("pager", pager);
 	}
 	
 	//상세 조회

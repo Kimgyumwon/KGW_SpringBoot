@@ -23,6 +23,21 @@
         transform: translateY(-5px);
         box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     }
+    
+    .pagination .page-item .page-link {
+        color: #4e73df;
+        font-weight: 600;
+    }
+    .pagination .page-item.active .page-link {
+        background-color: #4e73df;
+        border-color: #4e73df;
+        color: #fff;
+    }
+    .pagination .page-link:hover {
+        background-color: #dce3ff;
+        border-color: #a4b4ff;
+    }
+    
 </style>
 
 
@@ -107,7 +122,33 @@
 
                     
                     </div>
-                
+                <!-- Pagination -->
+					<nav aria-label="Page navigation example">
+					    <ul class="pagination justify-content-center">
+					
+				        		<!-- 이전 버튼 -->
+					            <li class="page-item">
+					                <a class="page-link" href="./list?page=${pager.begin - 1}" aria-label="Previous">
+					                    <span aria-hidden="true">&laquo;</span>
+					                </a>
+					            </li>
+					
+					        <!-- 페이지 번호들 -->
+					        <c:forEach begin="${pager.begin}" end="${pager.end}" var="num">
+					            <li class="page-item ${pager.page == num ? 'active' : ''}">
+					                <a class="page-link" href="./list?page=${num}">${num}</a>
+					            </li>
+					        </c:forEach>
+					
+					        <!-- 다음 버튼 -->
+					            <li class="page-item">
+					                <a class="page-link" href="./list?page=${pager.end + 1}" aria-label="Next">
+					                    <span aria-hidden="true">&raquo;</span>
+					                </a>
+					            </li>
+					
+					    </ul>
+					</nav>
                 </div>
                 <!-- /.container-fluid -->
             </div> 

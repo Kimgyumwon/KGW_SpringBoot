@@ -91,9 +91,9 @@
 
 <body>
     <div class="container">
-        <h2>회원가입</h2>
+        <h2>로그인</h2>
 
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
 
             <div class="form-group">
                 <label for="username">아이디</label>
@@ -104,37 +104,11 @@
                 <label for="password">비밀번호</label>
                 <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
             </div>
-
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
-            </div>
-
-            <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" required placeholder="example@domain.com">
-            </div>
-
-            <div class="form-group">
-                <label for="phone">전화번호</label>
-                <input type="text" id="phone" name="phone" placeholder="010-0000-0000">
-            </div>
-
-            <div class="form-group">
-                <label for="birth">생년월일</label>
-                <input type="date" id="birth" name="birth">
-            </div>
 			
-			<div class="form-group">
-			    <label for="profile">프로필 사진</label>
-			    <input type="file" id="profile" name="attach" accept="image/*">
-			</div>
-			
-			
-            <button type="submit" class="btn-submit">회원가입</button>
+            <button type="submit" class="btn-submit">로그인</button>
 
             <div class="login-link">
-                이미 계정이 있나요? <a href="/users/login">로그인</a>
+                이미 계정이 있나요? <a href="/users/register">회원가입</a>
             </div>
 
         </form>

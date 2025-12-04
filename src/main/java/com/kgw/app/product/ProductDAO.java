@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.kgw.app.util.Pager;
+
 @Mapper
 public interface ProductDAO {
 	// 상품 리스트
-	public List<ProductDTO> list() throws Exception;
+	public List<ProductDTO> list(Pager pager) throws Exception;
 	// 상품 조회
 	public ProductDTO detail(ProductDTO productDTO) throws Exception;
 	// 상품 등록
@@ -16,6 +18,7 @@ public interface ProductDAO {
 	public int delete(ProductDTO productDTO) throws Exception;
 	// 상품 수정
 	public int update(ProductDTO productDTO) throws Exception;
-	
+	// 상품 갯수
+	public Long count(Pager pager) throws Exception;
 	
 }

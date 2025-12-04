@@ -32,8 +32,6 @@
     		</association>
     	</resultMap>
     	
-    	
-    	
     	<!-- 프로필 사진 업로드 -->
    		<insert id="userFileAdd" parameterType="UsersFileDTO">
     		INSERT INTO profile (file_name, file_origin, username)

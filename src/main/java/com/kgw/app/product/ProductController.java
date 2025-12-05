@@ -96,10 +96,9 @@ public class ProductController {
 	//========================================
 	
 	@GetMapping("commentList")
-	@ResponseBody
-	public List<ProductCommentDTO> commentList(ProductCommentDTO productCommentDTO , Pager pager) throws Exception {
+	public void commentList(ProductCommentDTO productCommentDTO , Pager pager, Model model) throws Exception {
 		List<ProductCommentDTO> list = productService.commentList(productCommentDTO,pager);
-		return list;
+		model.addAttribute("list", list);
 	};
 	
 	@PostMapping("commentAdd")

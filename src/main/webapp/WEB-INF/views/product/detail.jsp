@@ -127,8 +127,12 @@
 					        <hr>
 							
 							<div id="list" class="comment-wrapper" data-product-num="${dto.productNum}">
+							
 							</div>
-
+							<button class="btn btn-primary mb-3" id="openCommentModal" data-toggle="modal" data-target="#commentModal">
+							    댓글 달기
+							</button>
+							
 					        <!-- 버튼 영역 -->
 					        <div class="d-flex justify-content-between mt-3">
 					
@@ -137,6 +141,8 @@
 					            </a>
 					
 					            <div>
+					            	
+					            	
 					                <a href="./update?productNum=${dto.productNum}" 
 					                   class="btn btn-warning text-dark mr-2">
 					                    수정하기
@@ -178,8 +184,32 @@
 	</div>
 	
 
+	<!-- 댓글 작성 모달 -->
+<div class="modal fade" id="commentModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+	<div class="modal-header">
+	    <h5 class="modal-title">댓글 작성</h5>
+	    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	        <span aria-hidden="true">&times;</span>
+	    </button>
+	</div>
+
+      <div class="modal-body">
+        <textarea id="commentText" class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
+        <button type="button" class="btn btn-success" id="saveCommentBtn">등록하기</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 	<c:import url="/WEB-INF/views/template/foot.jsp"/>
-	
 	<script type="text/javascript" src="/js/product/product_comment.js"></script>	
 	
 	

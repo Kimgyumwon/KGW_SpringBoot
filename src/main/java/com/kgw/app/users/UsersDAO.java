@@ -9,4 +9,6 @@ public interface UsersDAO {
 	public int register(UsersDTO usersDTO) throws Exception;
 	public UsersDTO detail(UsersDTO usersDTO) throws Exception;
 	public int userFileAdd(UsersFileDTO usersFileDTO) throws Exception;
+	public int update(UsersDTO usersDTO) throws Exception;
+	public UsersDTO login(UsersDTO usersDTO) throws Exception;
 }

@@ -56,6 +56,9 @@ public class NoticeService implements BoardService {
 		//	2) 어떤 이름으로 저장?
 		
 		int result = noticeDAO.add(boardDTO);
+		if (attach == null) {
+			return result;
+		}
 		
 		File file = new File(uploadPath);
 		

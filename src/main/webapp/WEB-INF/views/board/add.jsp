@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -153,20 +154,20 @@
         <div class="row">
 
           <!-- ❗ 로직 그대로 유지한 form -->
-          <form method="post" class="notice-form" enctype="multipart/form-data">
-            <input type="hidden" name="boardNum" value="${board.boardNum}">
-
+          <form:form modelAttribute="board" method="post" enctype="multipart/form-data" cssClass="notice-form">
+          	<form:hidden path="boardNum"/>
+          	
             <label for="board_title">제목</label>
-            <input type="text" id="board_title" name="boardTitle"
-                   placeholder="제목을 입력하세요" value="${board.boardTitle}" required />
-
+            <form:input path="boardTitle" id="board_title"/>
+			<form:errors path="boardTitle"></form:errors>
+			
+			
             <label for="board_writer">작성자</label>
-            <input type="text" id="board_writer" name="boardWriter"
-                   placeholder="작성자 이름" value="${board.boardWriter}" required />
-
+            <form:input path="boardWriter" id="board_writer"/>
+			
+			
             <label for="board_contents">내용</label>
-            <textarea id="board_contents" name="boardContents" rows="8"
-                      placeholder="공지 내용을 입력하세요" required>${board.boardContents}</textarea>
+			<form:textarea path="boardContents" id="board_contents" rows="8"/>
 
             <div>
               <button type="button" id="fileAddBtn">File Add</button>
@@ -176,8 +177,7 @@
             <div id="files"></div>
 
             <button type="submit">${kind}</button>
-          </form>
-
+ 		 </form:form>
         </div>
 
       </div>

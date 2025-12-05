@@ -1,6 +1,8 @@
 package com.kgw.app.product;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,6 @@ public class ProductService {
 	
 	// 리스트 보기
 	public List<ProductDTO> list(Pager pager) throws Exception {
-		
 		Long totalCount = productDAO.count(pager);
 		pager.pageing(totalCount);
 		return productDAO.list(pager);
@@ -42,6 +43,20 @@ public class ProductService {
 		
 		return productDAO.update(productDTO);
 	}
+	
+	//===============================================
+	public List<ProductCommentDTO> commentList(ProductCommentDTO productCommentDTO , Pager pager) throws Exception {
+		Map<String, Object> map = new HashMap<>();
+		map.put("product", productCommentDTO);
+		map.put("pager", pager);
+		pager.pageing(20L);
+		return productDAO.commentList(map);
+	};
+	
+	public int commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+		return productDAO.commentAdd(productCommentDTO);
+	};
+	
 	
 	
 	

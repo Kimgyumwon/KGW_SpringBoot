@@ -10,6 +10,12 @@
 			VALUES ( #{username}, #{password}, #{name}, #{email}, #{phone}, #{birth} )
     	</insert>
     	
+    	<select id="login" parameterType="UsersDTO" resultType="UsersDTO">
+    		SELECT * FROM users
+    		WHERE username=#{username} AND password=#{password}
+    	</select>
+    	
+    	
     	<select id="detail" resultMap="detailResult" resultType="UsersDTO">
     		select * from users u
 				left join profile p
@@ -38,8 +44,20 @@
     		VALUES (#{fileName}, #{fileOrigin}, #{username})
     	</insert>
     	
-    	
-    	
-    	
-    	
+    	<update id="update" parameterType="UsersDTO">
+    		UPDATE users
+    		<set>
+    			name=#{name},
+				<if test="email != null">
+					email=#{email},
+				</if>    			
+				<if test="phone != null">
+					phone=#{phone},
+				</if>    
+				<if test="birth != null">
+					birth=#{birth},
+				</if>    
+    		</set>
+			WHERE username=#{username}
+    	</update>
     </mapper>

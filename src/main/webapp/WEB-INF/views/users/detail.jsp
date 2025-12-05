@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -98,7 +98,21 @@
         background: #f1f1f1;
         cursor: not-allowed;
     }
+	
+	
+.btn-password {
+    display: block;           /* a태그도 버튼처럼 전체 너비 */
+    text-align: center;
+    background: #ff6b6b;      /* 빨간색 */
+    margin-top: 8px;          /* 위 버튼과 간격 살짝 */
+    text-decoration: none;    /* 링크 밑줄 제거 */
+}
 
+.btn-password:hover {
+    background: #e65454;
+}
+	
+	
 </style>
 
 </head>
@@ -111,61 +125,57 @@
     <!-- 프로필 이미지 -->
     <div class="profile-img">
         <c:choose>
-            <c:when test="${user.usersFileDTO.fileName != null}">
-                <img src="/files/users/${user.usersFileDTO.fileName}" alt="profile">
+            <c:when test="${usersDTO.usersFileDTO.fileName != null}">
+                <img src="/files/users/${usersDTO.usersFileDTO.fileName}" alt="profile">
             </c:when>
             <c:otherwise>
                 기본 이미지
             </c:otherwise>
         </c:choose>
     </div>
+	
+	<form:form modelAttribute="usersDTO" action="./update" method="post">
+		
+	    <!-- 아이디 - readonly -->
+	    <div class="form-group">
+	        <label for="username">아이디</label>
+	        <form:input path="username" id="username" cssClass="readonly" readonly="true"/>
+	        <form:errors path="username"/>
+	    </div>
+	
 
-    <form action="/user/update" method="post">
-
-        <!-- 아이디 - readonly -->
-        <div class="form-group">
-            <label for="username">아이디</label>
-            <input type="text" id="username" name="username"
-                   value="${user.username}" class="readonly" readonly>
-        </div>
-
-        <!-- 비밀번호 변경 -->
-        <div class="form-group">
-            <label for="password">새 비밀번호 (변경시에만 입력)</label>
-            <input type="password" id="password" name="password"
-                   placeholder="새 비밀번호 입력">
-        </div>
-
-        <!-- 이름 -->
-        <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" name="name"
-                   value="${user.name}" required>
-        </div>
-
-        <!-- 이메일 -->
-        <div class="form-group">
-            <label for="email">이메일</label>
-            <input type="email" id="email" name="email"
-                   value="${user.email}" required>
-        </div>
-
-        <!-- 전화번호 -->
-        <div class="form-group">
-            <label for="phone">전화번호</label>
-            <input type="text" id="phone" name="phone"
-                   value="${user.phone}">
-        </div>
-
-        <!-- 생년월일 -->
-        <div class="form-group">
-            <label for="birth">생년월일</label>
-            <input type="date" id="birth" name="birth"
-                   value="${user.birth}">
-        </div>
-
-        <button class="btn-save" type="submit">정보 수정</button>
-    </form>
+	
+	    <!-- 이름 -->
+	    <div class="form-group">
+	        <label for="name">이름</label>
+	        <form:input path="name" id="name"/>
+	        <form:errors path="name"/>
+	    </div>
+	
+	    <!-- 이메일 -->
+	    <div class="form-group">
+	        <label for="email">이메일</label>
+	        <form:input path="email" id="email" type="email"/>
+	        <form:errors path="email"/>
+	    </div>
+	
+	    <!-- 전화번호 -->
+	    <div class="form-group">
+	        <label for="phone">전화번호</label>
+	        <form:input path="phone" id="phone"/>
+	        <form:errors path="phone"/>
+	    </div>
+	
+	    <!-- 생년월일 -->
+	    <div class="form-group">
+	        <label for="birth">생년월일</label>
+	        <form:input path="birth" id="birth" type="date"/>
+	        <form:errors path="birth"/>
+	    </div>
+	
+	    <button class="btn-save" type="submit">정보 수정</button>
+		<a href="./change" class="btn-save btn-password">비밀번호 변경</a>
+	</form:form>
 
 </div>
 

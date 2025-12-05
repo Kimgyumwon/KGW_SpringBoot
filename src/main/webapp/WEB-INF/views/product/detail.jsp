@@ -7,6 +7,57 @@
   <meta charset="UTF-8">
   <title>Product</title>
 <c:import url="/WEB-INF/views/template/head.jsp"/>
+<style type="text/css">
+.comment-wrapper {
+  margin-top: 20px;
+}
+
+.comment-bubble {
+  margin-bottom: 18px;
+  padding-left: 10px;
+}
+
+.bubble-user {
+  font-size: 0.8rem;
+  color: #4a7ab7;
+  margin-bottom: 3px;
+  padding-left: 8px;
+}
+
+.bubble-box {
+  display: inline-block;
+  background: #e2f3d5;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 75%;
+  position: relative;
+  font-size: 0.95rem;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.bubble-box::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 10px;
+  border: 8px solid transparent;
+  border-right-color: #e2f3d5;
+}
+
+.bubble-text {
+  line-height: 1.4;
+}
+
+.bubble-date {
+  font-size: 0.75rem;
+  color: #888;
+  margin-top: 4px;
+  padding-left: 8px;
+}
+</style>
+
+
 </head>
 <body id="page-top">
 
@@ -74,7 +125,10 @@
 					        </p>
 					
 					        <hr>
-					
+							
+							<div id="list" class="comment-wrapper" data-product-num="${dto.productNum}">
+							</div>
+
 					        <!-- 버튼 영역 -->
 					        <div class="d-flex justify-content-between mt-3">
 					
@@ -126,7 +180,7 @@
 
 	<c:import url="/WEB-INF/views/template/foot.jsp"/>
 	
-	
+	<script type="text/javascript" src="/js/product/product_comment.js"></script>	
 	
 	
 	

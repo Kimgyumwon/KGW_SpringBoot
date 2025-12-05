@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.kgw.app.board.BoardDTO;
 import com.kgw.app.board.BoardFileDTO;
 import com.kgw.app.util.Pager;
 
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -49,13 +51,18 @@ public class NoticeController {
 	}
 	
 	@GetMapping("add")
-	public String add(Model model) {
+	public String add(Model model,@ModelAttribute("board") NoticeDTO noticeDTO) {
 		model.addAttribute("kind", "ADD");
 		return "board/add";
 	}
 	
 	@PostMapping("add")
-	public String add(NoticeDTO noticeDTO, MultipartFile[] attach , Model model) throws Exception {
+	public String add(@ModelAttribute("board") @Valid NoticeDTO noticeDTO,BindingResult bindingResult , MultipartFile[] attach , Model model) throws Exception {
+
+		if (bindingResult.hasErrors()) {
+			return "board/add";
+		}
+		
 		int result = noticeService.add(noticeDTO , attach);
 		String msg = "실패했습니다 ㅠㅠ";
 		if (result == 0) {

@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.kgw.app.board.notice.NoticeFileDTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,13 +15,11 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class BoardDTO {
+public class BoardDTO extends CommentDTO {
 	
-	private Long boardNum;
+	@NotBlank
 	private String boardTitle;
 	private String boardWriter;
-	private String boardContents;
-	private LocalDate boardDate;
 	private Long boardHit;
 	
 	

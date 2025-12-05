@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -85,59 +85,87 @@
         text-decoration: none;
         font-weight: bold;
     }
-
+	
+	.help-text {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 4px;
+    display: block;
+}
+	
 </style>
 </head>
 
 <body>
     <div class="container">
         <h2>회원가입</h2>
+		
+		<form:form modelAttribute="dto" method="post" enctype="multipart/form-data">
+		    <div class="form-group">
+		        <label for="username">아이디</label>
+		        <form:input path="username" id="username"/>
+		        <small class="help-text">영문 소문자 또는 숫자 5~10자로 입력하세요.</small>
+		        <form:errors path="username"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="password">비밀번호</label>
+		        <form:password path="password" id="password"/>
+		        <small class="help-text">
+		            비밀번호는 8자 이상이며 대문자·소문자·숫자·특수문자 중 3가지 이상을 포함해야 합니다.
+		        </small>
+		        <form:errors path="password"></form:errors>
+		    </div>
+		    <div class="form-group">
+		        <label for="passwordCheck">비밀번호 확인</label>
+		        <form:password path="passwordCheck" id="passwordCheck"/>
+		        <small class="help-text">
+		            비밀번호 확인
+		        </small>
+		        <form:errors path="passwordCheck"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="name">이름</label>
+		        <form:input path="name" id="name"/>
+		        <small class="help-text">한글 또는 영문으로 2~20자 이내로 입력하세요.</small>
+		        <form:errors path="name"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="email">이메일</label>
+		        <form:input path="email" id="email" type="email"/>
+		        <small class="help-text">예: example@email.com 형식으로 입력하세요.</small>
+		        <form:errors path="email"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="phone">전화번호</label>
+		        <form:input path="phone" id="phone"/>
+		        <small class="help-text">숫자만 입력하세요. 예: 01012345678</small>
+		        <form:errors path="phone"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="birth">생년월일</label>
+		        <form:input path="birth" id="birth" type="date"/>
+		        <small class="help-text">올바른 날짜를 선택하세요.</small>
+		        <form:errors path="birth"></form:errors>
+		    </div>
+		
+		    <div class="form-group">
+		        <label for="profile">프로필 사진</label>
+		        <input type="file" id="profile" name="attach">
+		        <small class="help-text">JPG, PNG 파일만 업로드 가능합니다. (최대 5MB)</small>
+		    </div>
+		
+		    <button type="submit" class="btn-submit">회원가입</button>
+		
+		    <div class="login-link">
+		        이미 계정이 있나요? <a href="/users/login">로그인</a>
+		    </div>
+		</form:form>
 
-        <form method="post" enctype="multipart/form-data">
-
-            <div class="form-group">
-                <label for="username">아이디</label>
-                <input type="text" id="username" name="username" required placeholder="아이디를 입력하세요">
-            </div>
-
-            <div class="form-group">
-                <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
-            </div>
-
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
-            </div>
-
-            <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="email" required placeholder="example@domain.com">
-            </div>
-
-            <div class="form-group">
-                <label for="phone">전화번호</label>
-                <input type="text" id="phone" name="phone" placeholder="010-0000-0000">
-            </div>
-
-            <div class="form-group">
-                <label for="birth">생년월일</label>
-                <input type="date" id="birth" name="birth">
-            </div>
-			
-			<div class="form-group">
-			    <label for="profile">프로필 사진</label>
-			    <input type="file" id="profile" name="attach" accept="image/*">
-			</div>
-			
-			
-            <button type="submit" class="btn-submit">회원가입</button>
-
-            <div class="login-link">
-                이미 계정이 있나요? <a href="/users/login">로그인</a>
-            </div>
-
-        </form>
     </div>
 </body>
 </html>

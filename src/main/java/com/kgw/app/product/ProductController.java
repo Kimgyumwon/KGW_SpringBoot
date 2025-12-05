@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kgw.app.users.UsersDTO;
 import com.kgw.app.util.Pager;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/product/*")
@@ -96,15 +99,20 @@ public class ProductController {
 	//========================================
 	
 	@GetMapping("commentList")
-	@ResponseBody
-	public List<ProductCommentDTO> commentList(ProductCommentDTO productCommentDTO , Pager pager) throws Exception {
+	public void commentList(ProductCommentDTO productCommentDTO , Pager pager , Model model) throws Exception {
 		List<ProductCommentDTO> list = productService.commentList(productCommentDTO,pager);
-		return list;
+		model.addAttribute("list", list);
 	};
 	
 	@PostMapping("commentAdd")
-	public void commentAdd(ProductCommentDTO productCommentDTO) throws Exception {
+	@ResponseBody
+	public int commentAdd(ProductCommentDTO productCommentDTO , HttpSession session) throws Exception {
+		UsersDTO userDTO = (UsersDTO)session.getAttribute("user");
+		productCommentDTO.setUsername(userDTO.getUsername());
 		
+		int result = productService.commentAdd(productCommentDTO);
+		
+		return result;
 	};
 	
 	

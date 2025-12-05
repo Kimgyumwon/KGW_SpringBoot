@@ -60,7 +60,11 @@
     		VALUES (null, #{boardContents}, now(), #{productNum}, #{username})
     		
     	</insert>
-    	
+		
+		<select id="commentCount" parameterType="ProductCommentDTO" resultType="Long">
+			SELECT COUNT(*) FROM comment
+			WHERE product_num=#{productNum}
+		</select>    	
     	
     	
     </mapper>

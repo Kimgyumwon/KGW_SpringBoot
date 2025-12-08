@@ -122,11 +122,4 @@ public class NoticeController {
 		return "fileDownView";
 	}
 	
-	
-	
-	
-	
-	
-	
-	
 }

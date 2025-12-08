@@ -1,6 +1,14 @@
 package com.kgw.app.users;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -14,7 +22,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UsersDTO {
+public class UsersDTO implements UserDetails {
 	
 	@Size(max = 10, min = 5 , groups = {RegisterGroup.class})
 	private String username;
@@ -35,7 +43,45 @@ public class UsersDTO {
 	@Past(groups = {RegisterGroup.class , UpdateGroup.class})
 	private LocalDate birth;
 	
-	private UsersFileDTO usersFileDTO;
+	private List<RoleDTO> roleDTOs;
 	
+	private UsersFileDTO usersFileDTO;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<GrantedAuthority> list = new ArrayList<>();
+		for (int i = 0; i < roleDTOs.size(); i++) {
+			GrantedAuthority g = new SimpleGrantedAuthority(roleDTOs.get(i).getRoleName());
+			list.add(g);
+		}
+		
+		return list;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+
 	
 }

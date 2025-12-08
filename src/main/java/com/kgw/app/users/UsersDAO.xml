@@ -17,10 +17,14 @@
     	
     	
     	<select id="detail" resultMap="detailResult" resultType="UsersDTO">
-    		select * from users u
+			select * from users u
+				left join user_role ur
+				on u.username = ur.username
+				left join role r
+				on ur.role_num = r.role_num
 				left join profile p
-				on u.username = p.username
-			where u.username = #{username}
+				on p.username = u.username
+			where u.username = #{username};
     	</select>
     	
     	<resultMap type="UsersDTO" id="detailResult">
@@ -36,7 +40,19 @@
     			<result column="file_name" property="fileName"/>
     			<result column="file_origin" property="fileOrigin"/>
     		</association>
+    		<collection property="roleDTOs" javaType="java.util.List" ofType="RoleDTO">
+    			<id column="role_num" property="roleNum"/>
+    			<result column="role_name" property="roleName"/>
+    		</collection>
     	</resultMap>
+    	
+    	
+    	<insert id="roleAdd" parameterType="UsersDTO">
+    		INSERT INTO user_role (username, role_num)
+    		VALUES (#{username} , 3)
+    	</insert>
+    	
+    	
     	
     	<!-- 프로필 사진 업로드 -->
    		<insert id="userFileAdd" parameterType="UsersFileDTO">

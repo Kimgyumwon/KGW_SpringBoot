@@ -4,6 +4,7 @@ import java.io.File;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +23,18 @@ public class UsersService {
 	@Value("${app.upload.users}")
 	private String uploadPath;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	// 회원가입
 	public int resgister(UsersDTO usersDTO, MultipartFile attach) throws Exception {
 		File file = new File(uploadPath);
 		
+		usersDTO.setPassword(passwordEncoder.encode(usersDTO.getPassword()));
+		
 		int result = usersDAO.register(usersDTO);
+		
+		result = usersDAO.roleAdd(usersDTO);
 		
 		if (attach == null || attach.isEmpty()) {
 			return result;

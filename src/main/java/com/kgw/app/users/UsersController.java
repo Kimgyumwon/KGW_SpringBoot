@@ -61,18 +61,6 @@ public class UsersController {
 	@GetMapping("login")
 	public void login() throws Exception {}
 	
-	@PostMapping("login")
-	public String login(UsersDTO userDTO, HttpSession session) throws Exception {
-		UsersDTO login = usersService.login(userDTO);
-		
-		if (login != null) {
-			login = usersService.detail(userDTO);
-			session.setAttribute("user", login);
-			return "redirect:/";
-		}
-		return "users/login";
-	}
-	
 	@PostMapping("update")
 	public String update(@Validated(UpdateGroup.class) @ModelAttribute UsersDTO usersDTO , BindingResult bindingResult ,
 			HttpSession session , Model model) throws Exception {
@@ -102,9 +90,6 @@ public class UsersController {
 		if (usersService.getError(usersDTO, bindingResult)) {
 			return "users/change";
 		}
-		
-		
-		
 		
 		return "redirect:./detail";
 	}

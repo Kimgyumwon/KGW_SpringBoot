@@ -37,7 +37,6 @@ fetch(`./commentList?productNum=${num}&page=${page}`)
   
   
 commentAdd.addEventListener("click" , () => {
-	
 	const param = new URLSearchParams();
 	param.append("productNum" , num);
 	param.append("boardContents" , contents.value);

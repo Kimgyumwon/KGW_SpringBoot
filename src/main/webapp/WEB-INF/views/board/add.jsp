@@ -162,8 +162,8 @@
 			<form:errors path="boardTitle"></form:errors>
 			
 			
-            <label for="board_writer">작성자</label>
-            <form:input path="boardWriter" id="board_writer"/>
+<%--             <label for="board_writer">작성자</label>
+            <form:input path="boardWriter" id="board_writer" disabled/> --%>
 			
 			
             <label for="board_contents">내용</label>

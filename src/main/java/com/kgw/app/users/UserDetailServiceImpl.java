@@ -14,7 +14,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		System.out.println("로그인 요청!");
 		UsersDTO userDTO = new UsersDTO();
 		userDTO.setUsername(username);
 		UserDetails userDetails;

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
     		                <!-- Topbar -->
                	<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -76,28 +77,47 @@
                                 </a>
                             </div>
                         </li>
-					<c:if test="${not empty user}">
-                        <li class="nav-item mx-1">
-                            <a class="nav-link" href="/users/detail?${user.username}" id="alertsDropdown" role="button"
-                                aria-haspopup="true" aria-expanded="false">
-							<i class="fas fa-fish" style="color: #6aab97"></i>                      
-							</a>
-                        </li>
-					</c:if>
-					<c:if test="${empty user}">
+                        
+                        <sec:authorize access="isAuthenticated()">
+	                        <sec:authentication property="principal" var="user"/>
+	                        <li class="nav-item mx-1">
+	                            <a class="nav-link" href="/users/detail?${user.username}" id="alertsDropdown" role="button"
+	                                aria-haspopup="true" aria-expanded="false">
+								<i class="fas fa-fish" style="color: #6aab97"></i>                      
+								</a>
+	                        </li>
+	                        
+                            <li class="nav-item mx-1">
+	                            <a class="nav-link" href="/users/logout" id="alertsDropdown" role="button"
+	                                aria-haspopup="true" aria-expanded="false">
+									<i class="fas fa-feather-alt" style="color: #ff7212"></i>
+								</a>
+                         	</li>
+	                        
+	                        
+	                        
+                        </sec:authorize>
+                        
+                       <sec:authorize access="!isAuthenticated()">
+                       
                         <li class="nav-item mx-1">
                             <a class="nav-link" href="/users/login" id="alertsDropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">
 							<i class="fas fa-dragon" style="color: #ff6060"></i>                           
 							</a>
                          </li>
+                         
                          <li class="nav-item mx-1">
                             <a class="nav-link" href="/users/register" id="alertsDropdown" role="button"
                                 aria-haspopup="true" aria-expanded="false">
 								<i class="fas fa-skull" style="color: #288a28"></i>
 							</a>
                          </li>
-					</c:if>
+                         
+
+                         
+                      </sec:authorize>
+                      
                     </ul>
 
                 </nav>

@@ -13,7 +13,6 @@ public class UserInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		// controller 시작 전
-		System.out.println("PRE");
 		return true;
 	}
 
@@ -21,6 +20,5 @@ public class UserInterceptor implements HandlerInterceptor {
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// controller 종료 후
-		System.out.println("POST");
 	}
 }

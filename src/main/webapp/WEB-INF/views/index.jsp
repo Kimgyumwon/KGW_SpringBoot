@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -37,8 +38,12 @@
                     <!-- Content Row -->
                     <div class="row">
                     
-                   
-                    
+	                    <sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal" var="user"/>	
+	                    		<h1>${user.name }</h1>
+	                    		<br>
+	                    		<h1>${user.email}</h1>
+	                    </sec:authorize>
                     </div>
                 
                 </div>

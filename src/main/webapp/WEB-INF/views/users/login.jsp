@@ -85,6 +85,42 @@
         text-decoration: none;
         font-weight: bold;
     }
+	
+	.message-box {
+    padding: 12px 15px;
+    background: #ffe5e5;
+    color: #d9534f;
+    border: 1px solid #f5c6cb;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.message-box.success {
+    background: #e2f7e2;
+    color: #3c763d;
+    border: 1px solid #b2d8b2;
+}
+
+.remember-group {
+    display: flex;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.remember-group input {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+.remember-group label {
+    font-size: 14px;
+    color: #555;
+    cursor: pointer;
+}
 
 </style>
 </head>
@@ -92,7 +128,11 @@
 <body>
     <div class="container">
         <h2>로그인</h2>
-
+		
+	    <div class="message-box">
+	        ${param.message}
+	    </div>
+		
         <form method="post">
 
             <div class="form-group">
@@ -102,8 +142,14 @@
 
             <div class="form-group">
                 <label for="password">비밀번호</label>
-                <input type="password" id="password" name="password" required placeholder="비밀번호를 입력하세요">
+                <input type="password" id="password" name="password" value="anananan" required placeholder="비밀번호를 입력하세요">
             </div>
+			
+			<div class="remember-group">
+			    <input type="checkbox" id="rememberId" name="rememberme">
+			    <label for="rememberId">Remember me</label>
+			</div>
+			
 			
             <button type="submit" class="btn-submit">로그인</button>
 

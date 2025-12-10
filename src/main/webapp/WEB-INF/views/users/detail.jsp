@@ -125,8 +125,8 @@
     <!-- 프로필 이미지 -->
     <div class="profile-img">
         <c:choose>
-            <c:when test="${usersDTO.usersFileDTO.fileName != null}">
-                <img src="/files/users/${usersDTO.usersFileDTO.fileName}" alt="profile">
+            <c:when test="${user.usersFileDTO.fileName != null}">
+                <img src="/files/users/${user.usersFileDTO.fileName}" alt="profile">
             </c:when>
             <c:otherwise>
                 기본 이미지
@@ -134,7 +134,7 @@
         </c:choose>
     </div>
 	
-	<form:form modelAttribute="usersDTO" action="./update" method="post">
+	<form:form modelAttribute="user" action="./update" method="post">
 		
 	    <!-- 아이디 - readonly -->
 	    <div class="form-group">

@@ -1,6 +1,11 @@
 package com.kgw.app.users;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +25,8 @@ public class UsersController {
 	
 	@Autowired
 	private UsersService usersService;
-	
-	
+	@Autowired
+	private UserDetailServiceImpl detailServiceImpl;
 	
 	@GetMapping("register")
 	public String register(@ModelAttribute("dto") UsersDTO usersDTO) {
@@ -54,28 +59,42 @@ public class UsersController {
 	}
 	
 	@GetMapping("detail")
-	public void detail(HttpSession session , Model model) throws Exception {
-		model.addAttribute("usersDTO", session.getAttribute("user"));
+	public void detail(@AuthenticationPrincipal UsersDTO userDTO , Model model) throws Exception {
+		model.addAttribute("user", userDTO);
 	}
 	
 	@GetMapping("login")
-	public void login() throws Exception {}
+	public String login(HttpSession session) throws Exception {
+		Object obj = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		
+		if (obj != null) {
+			return "redirect:/";
+		}
+		return "users/login";
+	}
 	
 	@PostMapping("update")
-	public String update(@Validated(UpdateGroup.class) @ModelAttribute UsersDTO usersDTO , BindingResult bindingResult ,
-			HttpSession session , Model model) throws Exception {
-		
+	public String update(@Validated(UpdateGroup.class) @ModelAttribute UsersDTO usersDTO , BindingResult bindingResult
+					, Model model ) throws Exception {
 		if (bindingResult.hasErrors()) {
 			usersDTO = usersService.detail(usersDTO);
-			model.addAttribute("usersDTO", usersDTO);
+			model.addAttribute("user", usersDTO);
 			return "users/detail";
 		}
 		
 		int result = usersService.update(usersDTO);
 		if (result > 0) {
-			usersService.detail(usersDTO);
-			session.setAttribute("usersDTO", usersDTO);
+			
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			UserDetails updateUser = detailServiceImpl.loadUserByUsername(usersDTO.getUsername());
+			UsernamePasswordAuthenticationToken to = new UsernamePasswordAuthenticationToken(
+						updateUser,
+						authentication.getCredentials(),
+						updateUser.getAuthorities());
+			SecurityContextHolder.getContext().setAuthentication(to);
+			
 		}
+		
 		return "redirect:/";
 	}
 	

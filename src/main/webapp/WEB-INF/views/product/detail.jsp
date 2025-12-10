@@ -55,6 +55,77 @@
   margin-top: 4px;
   padding-left: 8px;
 }
+
+    /* ==== 댓글 모달 디자인 업그레이드 ==== */
+    #commentModal .modal-content {
+        border-radius: 14px;
+        border: none;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    #commentModal .modal-header {
+        background: #f5f7fb;
+        border-bottom: none;
+        border-radius: 14px 14px 0 0;
+        padding: 20px 24px;
+    }
+
+    #commentModal .modal-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    #commentModal .modal-body {
+        padding: 20px 24px;
+        background: #ffffff;
+    }
+
+    #commentModal textarea {
+        width: 100%;
+        border-radius: 10px;
+        border: 1px solid #ced4da;
+        padding: 14px;
+        resize: none;
+        font-size: 0.95rem;
+        transition: all 0.2s;
+    }
+
+    #commentModal textarea:focus {
+        border-color: #5a8dee;
+        box-shadow: 0 0 0 3px rgba(90, 141, 238, 0.2);
+    }
+
+    #commentModal .modal-footer {
+        padding: 16px 24px;
+        border-top: none;
+        background: #f9fafc;
+        border-radius: 0 0 14px 14px;
+    }
+
+    #commentModal .btn-primary {
+        background: #5a8dee;
+        border: none;
+        padding: 8px 18px;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    #commentModal .btn-primary:hover {
+        background: #467de3;
+    }
+
+    #commentModal .btn-secondary {
+        border-radius: 6px;
+        padding: 8px 18px;
+    }
+
+    .modal-subtitle {
+        font-size: 0.85rem;
+        color: #666;
+        margin-top: 4px;
+    }
+
 </style>
 
 
@@ -138,7 +209,7 @@
 					            </a>
 					
 					            <div>
-		            		        <button type="button" id="commentAdd" class="btn btn-danger mr-2">장바구니</button>
+		            		        <button type="button" id="cartAdd" class="btn btn-danger mr-2">장바구니</button>
 					            	<button class="btn btn-primary mr-2 " data-toggle="modal" data-target="#commentModal">댓글달기</button>
 					            
 					                <a href="./update?productNum=${dto.productNum}" 
@@ -182,29 +253,42 @@
 	</div>
 	
 	
-	<!-- Modal -->
-	<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	      	<form method="post">
-	      		<input type="hidden" value="${dto.productNum}">
-	      		<textarea rows="" cols="" id="contents" name="boardContents"></textarea>
-	      	</form>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">취소</button>
-	        <button type="button" id="commentAdd" class="btn btn-primary">댓글 등록</button>
-	      </div>
-	    </div>
-	  </div>
-	</div>
+		<!-- 댓글 작성 모달 -->
+		<div class="modal fade" id="commentModal" tabindex="-1" aria-hidden="true">
+		  <div class="modal-dialog modal-dialog-centered">
+		    <div class="modal-content">
+		
+		      <!-- Header -->
+		      <div class="modal-header">
+		        <h5 class="modal-title">댓글 작성</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		
+		      <!-- Body -->
+		      <div class="modal-body">
+		      	<form method="post">
+		      		<input type="hidden" value="${dto.productNum}">
+		          <textarea id="contents" rows="5" class="form-control" 
+		                    placeholder="댓글을 입력하세요"></textarea>
+		      	
+		      	</form>
+		      </div>
+		
+		      <!-- Footer -->
+		      <div class="modal-footer">
+		        <!-- ★ close 버튼은 JS에서 close.click() 으로 호출함 -->
+		        <button type="button" id="close" class="btn btn-secondary" data-dismiss="modal">취소</button>
+		
+		        <!-- ★ fetch 호출하는 버튼 -->
+		        <button type="button" id="commentAdd" class="btn btn-primary">댓글 등록</button>
+		      </div>
+		
+		    </div>
+		  </div>
+		</div>
+
 	
 	
 	<c:import url="/WEB-INF/views/template/foot.jsp"/>

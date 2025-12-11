@@ -15,7 +15,7 @@ class AjaxTest1Test {
 	
 	@Test
 	void test() throws Exception {
-		test2.t1();
+		test2.t3();
 	}
 
 }

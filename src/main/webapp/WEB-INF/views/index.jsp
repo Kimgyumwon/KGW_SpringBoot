@@ -40,9 +40,15 @@
                     
 	                    <sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal" var="user"/>	
-	                    		<h1>${user.name }</h1>
+	                    		<h1>${user.name}</h1>
 	                    		<br>
 	                    		<h1>${user.email}</h1>
+	                    </sec:authorize>
+	                    
+	                    <sec:authorize access="!isAuthenticated()">
+	                    	<h1>로그인필요</h1>
+	                    	<a href="/oauth2/authorization/kakao">카카오 로그인</a>
+	                    
 	                    </sec:authorize>
                     </div>
                 

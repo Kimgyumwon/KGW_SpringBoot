@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class UsersDTO implements UserDetails {
+public class UsersDTO implements UserDetails, OAuth2User{
 	
 	@Size(max = 10, min = 5 , groups = {RegisterGroup.class})
 	private String username;
@@ -47,15 +49,11 @@ public class UsersDTO implements UserDetails {
 	
 	private UsersFileDTO usersFileDTO;
 	
+	//UserDetail
 	private boolean accountNonExpired;
 	private boolean accountNonLocked;
 	private boolean credentialsNonExpired;
 	private boolean enabled;
-	
-	
-	
-	
-	
 	
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -67,5 +65,15 @@ public class UsersDTO implements UserDetails {
 		
 		return list;
 	}
+
+
+
+
+
+	// OAuth2User
+	private Map<String, Object> attributes;
+	private String sns;
+	
+	
 	
 }

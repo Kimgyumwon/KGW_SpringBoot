@@ -15,7 +15,6 @@ public class LogoutSucess implements LogoutSuccessHandler {
 	@Override
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
 			throws IOException, ServletException {
-		System.out.println("로그아웃 success");
 		response.sendRedirect("/");
 		
 	}

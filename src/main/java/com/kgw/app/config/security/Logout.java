@@ -11,8 +11,10 @@ public class Logout implements LogoutHandler {
 
 	@Override
 	public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
-		// TODO Auto-generated method stub
-		System.out.println("로그아웃 핸들러");
+		//kakao 서버로 로그아웃 요청을 보내자
+		
+		
+		
 	}
 	
 }

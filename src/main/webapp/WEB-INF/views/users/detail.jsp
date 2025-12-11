@@ -175,6 +175,7 @@
 	
 	    <button class="btn-save" type="submit">정보 수정</button>
 		<a href="./change" class="btn-save btn-password">비밀번호 변경</a>
+		<a href="./delete" class="btn btn-info">회원탈퇴</a>
 	</form:form>
 
 </div>

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import com.kgw.app.users.UsersDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 @Component
@@ -41,12 +43,24 @@ public class Logout implements LogoutHandler {
 //			;
 //		System.out.println(result);
 		//카카오 계정과 함께 로그아웃
-		try {
-			response.sendRedirect("https://kauth.kakao.com/oauth/logout?client_id="+restKey+"&logout_redirect_uri=http://localhost/");
+		UsersDTO userDTO = (UsersDTO)authentication.getPrincipal();
+		if (userDTO.getSns() != null) {
+			try {
+				response.sendRedirect("https://kauth.kakao.com/oauth/logout?client_id="+restKey+"&logout_redirect_uri=http://localhost/");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
+			try {
+				response.sendRedirect("/");
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
+		request.getSession().invalidate();
 	}
 	
 }

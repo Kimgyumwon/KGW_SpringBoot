@@ -24,7 +24,7 @@
 				on ur.role_num = r.role_num
 				left join profile p
 				on p.username = u.username
-			where u.username = #{username};
+			where u.username = #{username}
     	</select>
     	
     	<resultMap type="UsersDTO" id="detailResult">

@@ -37,7 +37,9 @@
                     
                     <!-- Content Row -->
                     <div class="row">
-                    
+                    	
+                    	<h1>Remote Test</h1>
+                    	
 	                    <sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal" var="user"/>	
 	                    		<h1>${user.name}</h1>
